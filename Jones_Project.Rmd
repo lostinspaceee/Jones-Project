@@ -1,0 +1,25 @@
+---
+title: "Jones Project"
+author: Gwyneth Jones
+output: html_notebook
+---
+
+Guiding Question: What factors directly impact risk of obesity?
+
+```{r}
+library(dcData)
+data("CountryData")
+view(pdata)
+```
+
+Source Information:
+
+-   Found on UC Irvine Machine Learning Repository and contained in the dcData package.
+
+-   Collected by Fabio Mendoza Palechor, Alexis De la Hoz Manotas, and Matt Beckman
+
+-   Collected as research for a paper in 2019 and as an accompanying resource for *Data Computing (2nd Edition)* by Kaplan & Beckman.
+
+-   A case represents an individual, and there are 2111 cases. For CountryData, a case is a country and there are 256 cases.
+
+-   I plan to analyze Gender, Age, Family History, Smoking, Water Consumption, Physical Activity, and Alcohol Consumption from ProjectData. From CountryData, I plan to use Population, Life, Health, Obesity, and Underweight as key variables.
