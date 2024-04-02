@@ -8,8 +8,10 @@ Guiding Question: What factors directly impact risk of obesity?
 
 ```{r}
 library(dcData)
+library(ggplot2)
+library(esquisse)
 data("CountryData")
-view(pdata)
+data("ProjectData")
 ```
 
 Source Information:
@@ -23,3 +25,14 @@ Source Information:
 -   A case represents an individual, and there are 2111 cases. For CountryData, a case is a country and there are 256 cases.
 
 -   I plan to analyze Gender, Age, Family History, Smoking, Water Consumption, Physical Activity, and Alcohol Consumption from ProjectData. From CountryData, I plan to use Population, Life, Health, Obesity, and Underweight as key variables.
+
+```{r}
+ggplot(ProjectData) +
+  aes(x = family_history_with_overweight, fill = NObeyesdad) +
+  geom_bar() +
+  scale_fill_brewer(palette = "Dark2", direction = 1) +
+  theme_bw() +
+  facet_wrap(vars(Gender))
+```
+
+
