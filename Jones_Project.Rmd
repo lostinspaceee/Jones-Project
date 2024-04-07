@@ -4,17 +4,31 @@ author: Gwyneth Jones
 output: html_notebook
 ---
 
-Guiding Question: What lifestyle factors impact obesity?
+### Guiding Question: What lifestyle factors impact obesity?
+
+Obesity is a worldwide issue that has no clear cause or solution. Obesity has many associated risks, including shortened lifespan, diabetes, heart attack, stroke, and other life-threatening complications. Managing such a disease requires a more in-depth analysis of causes, including predisposition to the condition. The best treatment doctors typically recommend is lifestyle changes, but what if those factors outside of your control had more input than you thought?
 
 ```{r}
 library(dcData)
 library(ggplot2)
 library(esquisse)
+library(readr)
+library(tidyverse)
+# loading necessary packages
+
+ProjectData <- read_csv("ProjectData/ProjectData.csv", show_col_types = FALSE)
+# importing data frame
+
 data("CountryData")
-data("ProjectData")
+view(ProjectData)
+# loading data frames
+
+head(CountryData)
+head(ProjectData)
+# preview of data frames
 ```
 
-Source Information:
+### Source Information:
 
 -   Found on UC Irvine Machine Learning Repository and contained in the dcData package.
 
@@ -24,26 +38,37 @@ Source Information:
 
 -   A case represents an individual, and there are 2111 cases. For CountryData, a case is a country and there are 256 cases.
 
--   I plan to analyze Gender, Age, Family History, Smoking, Water Consumption, Physical Activity, and Alcohol Consumption from ProjectData. From CountryData, I plan to use Population, Life, Health, Obesity, and Underweight as key variables.
+-   I plan to analyze the relationship between Gender and Family History from ProjectData. From CountryData, I plan to use Population, Life, Health, Obesity, and Underweight as key information.
 
 ```{r}
 ggplot(ProjectData) +
   aes(x = family_history_with_overweight, fill = NObeyesdad) +
   geom_bar() +
   scale_fill_brewer(palette = "Dark2", direction = 1) +
+  labs(x = "Family History", y = "Total", title = "Overview of Weight") +
   theme_bw() +
   facet_wrap(vars(Gender))
+# creating a visual relating gender, family history, and the weight of a case
 ```
 
 ```{r}
+CountryNew <- CountryData %>%
+  filter(country %in% c("Mexico","Peru","Colombia"))
+# creating a data frame focused on countries used in the study
+
 CountryNew %>%
   select(country, life, health, obesity, underweight)
+# looking closer at variables of interest for specified countries
 ```
 
-Preliminary Observations:
+### Technical Difficulties:
+
+I struggled a lot with creating the visuals displayed previously. While creating a display with ggplot(), I had to go back and carefully troubleshoot my code until the display looked like I wanted it to. For the table with information about Mexico, Peru, and Colombia, I have to admit that I spent an embarrassing amount of time troubleshooting my filter. Eventually, I settled on my current line of code, but I tried a myriad of combinations before I tried going back to the basics and quickly found my solution.
+
+### Preliminary Observations:
 
 A family history of obesity seems to impact the development of obesity in both males and females. Overweight type I and II appear about equally for men and women with a family history of obesity, while obesity type I and II are more common for men, and obesity type I and III are more common for women.Without a family history of obesity, women tend to be more underweight or overweight type I, while men tend to be more normal weight or overweight type I. Mexico allots the most funding towards healthcare, but also has 32.1% of the population considered obese. Peru has the least funding towards healthcare, and has the lowest obesity rate. However, Peru does have a lower lifespan than Colombia and Mexico, and has the highest incidence of underweight individuals in the population.
 
-Intuition:
+### Intuition:
 
-I have a feeling that the most common relation to obesity development is a family history for both males and females, and I'm curious to see how other variables might be at play.
+I have a feeling that the most common relation to obesity development is a family history for both males and females, as those without a family history tended to remain within a healthy weight. I also am curious about the impact that country funding towards healthcare has on rates of obesity, as life expectancy increases with more funding allocated towards healthcare.
