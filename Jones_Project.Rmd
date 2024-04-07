@@ -4,7 +4,7 @@ author: Gwyneth Jones
 output: html_notebook
 ---
 
-Guiding Question: What factors directly impact risk of obesity?
+Guiding Question: What lifestyle factors impact obesity?
 
 ```{r}
 library(dcData)
@@ -35,4 +35,15 @@ ggplot(ProjectData) +
   facet_wrap(vars(Gender))
 ```
 
+```{r}
+CountryNew %>%
+  select(country, life, health, obesity, underweight)
+```
 
+Preliminary Observations:
+
+A family history of obesity seems to impact the development of obesity in both males and females. Overweight type I and II appear about equally for men and women with a family history of obesity, while obesity type I and II are more common for men, and obesity type I and III are more common for women.Without a family history of obesity, women tend to be more underweight or overweight type I, while men tend to be more normal weight or overweight type I. Mexico allots the most funding towards healthcare, but also has 32.1% of the population considered obese. Peru has the least funding towards healthcare, and has the lowest obesity rate. However, Peru does have a lower lifespan than Colombia and Mexico, and has the highest incidence of underweight individuals in the population.
+
+Intuition:
+
+I have a feeling that the most common relation to obesity development is a family history for both males and females, and I'm curious to see how other variables might be at play.
