@@ -10,13 +10,13 @@ Obesity is a worldwide issue that has no clear cause or solution. Obesity has ma
 
 ```{r}
 library(dcData)
+library(tidyverse)
 library(ggplot2)
 library(esquisse)
 library(readr)
-library(tidyverse)
 # loading necessary packages
 
-ProjectData <- read_csv("ProjectData/ProjectData.csv", show_col_types = FALSE)
+ProjectData <- read_csv("ProjectData.csv", show_col_types = FALSE)
 # importing data frame
 
 data("CountryData")
