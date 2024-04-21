@@ -19,6 +19,22 @@ library(readr)
 ProjectData <- read_csv("ProjectData.csv", show_col_types = FALSE)
 # importing data frame
 
+ProjectData <- ProjectData %>%
+  rename(FamilyHistory = family_history_with_overweight,
+        HighCalFood = FAVC,
+        FreqVeg = FCVC,
+        NumberOfMeals = NCP,
+        Snacks = CAEC,
+        Smoke = SMOKE,
+        Water = CH2O,
+        CountCal = SCC,
+        PhysicalActivity = FAF,
+        Technology = TUE,
+        Alcohol = CALC,
+        Transportation = MTRANS,
+        Obesity = NObeyesdad)
+# renaming variables
+
 data("CountryData")
 view(ProjectData)
 # loading data frames
@@ -42,7 +58,7 @@ head(ProjectData)
 
 ```{r}
 ggplot(ProjectData) +
-  aes(x = family_history_with_overweight, fill = NObeyesdad) +
+  aes(x = FamilyHistory, fill = Obesity) +
   geom_bar() +
   scale_fill_brewer(palette = "Dark2", direction = 1) +
   labs(x = "Family History", y = "Total", title = "Overview of Weight") +
