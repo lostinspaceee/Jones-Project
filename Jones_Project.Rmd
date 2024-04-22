@@ -65,6 +65,14 @@ ggplot(ProjectData) +
   theme_bw() +
   facet_wrap(vars(Gender))
 # creating a visual relating gender, family history, and the weight of a case
+
+ggplot(ProjectData, aes(x = Weight, fill = Obesity)) +
+  geom_histogram(aes(y = after_stat(density))) +
+  geom_density(alpha=.2) +
+  scale_fill_brewer(palette = "Dark2", direction = 1) +
+  theme_bw() +
+    facet_wrap(vars(Gender))
+# creating a visual relating gender, obesity class, and weight with an overlaid density distribution
 ```
 
 ```{r}
