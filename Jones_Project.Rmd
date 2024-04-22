@@ -73,6 +73,11 @@ ggplot(ProjectData, aes(x = Weight, fill = Obesity)) +
   theme_bw() +
     facet_wrap(vars(Gender))
 # creating a visual relating gender, obesity class, and weight with an overlaid density distribution
+
+ProjectData %>%
+  group_by(Gender) %>%
+  summarise(AvgWeight = mean(Weight))
+# understanding the average weight of all cases based on gender
 ```
 
 ```{r}
